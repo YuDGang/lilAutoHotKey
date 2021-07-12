@@ -109,24 +109,21 @@ ActivateAndOpen(t,p)
   }
 }
 
-!G::ActivateAndOpen("Google Chrome","C:\Program Files\Google\Chrome\Application\Chrome.exe")
-!V::ActivateAndOpen("Visual Studio Code", "C:\Program Files\Microsoft VS Code\Code.exe")
-
 
 ;连击热键动作
-ContinuousClick()
-{
+~Alt::
   if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 600)
-  {
-      MsgBox double-press
-  }
+    ActivateAndOpen("Google Chrome","C:\Program Files\Google\Chrome\Application\Chrome.exe")
   return
-}
-
-
+~LWin::
+  if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 600)
+    ActivateAndOpen("Visual Studio Code", "C:\Program Files\Microsoft VS Code\Code.exe")
+  return
 ;TODO
-!::Run ContinuousClick()
-
+~LCtrl::
+  if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 600)
+    ActivateAndOpen("Visual Studio Code", "C:\Program Files\Microsoft VS Code\Code.exe")
+  return
 
 ;缩写
 ::/lhg::梁洪刚
