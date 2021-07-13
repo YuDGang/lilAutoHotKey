@@ -1,9 +1,74 @@
-;置顶
-^SPACE::  Winset, Alwaysontop, , A
+; 按键已被重新映射(注册表)：
+; LCtrl == LWin(#)
+; LWin == Option(LAlt !)
+; LAlt == Command(LCtrl ^)
+
+;<Mac Command-Tab/>
+LCtrl & Tab::AltTab
+
+;<Mac window>
+;最小化
+^m:: WinMinimize, A
+;最大化
+^#f:: 
+  WinGet, OutputVar, MinMax, A
+  if(OutputVar = 1)
+    WinRestore, A
+  else
+    WinMaximize, A
+  return
+;退出
+^q:: WinClose, A
+;</Mac window>
+
+;<Mac page>
+;页面刷新
+^r::Send {F5}
+#+Tab::Send ^{PgUp}
+#Tab::Send ^{PgDn}
+;</Mac page>
+
+;<Mac text>
+;选择文字    
+^,::Send ^+{Left}    
+^.::Send ^+{Right}    return   
+;选择文字 从当前位置到行首行末 
+^+Left::Send +{Home}    
+^+Right::Send +{End}   
+;跳转光标 行首行末 页首页末
+^Left::Send {Home}
+^Right::Send {End}
+^Up::Home
+^Down::End
+;Option + jkli 映射方向键
+!j:: Send {left}
+!l:: Send {right}
+!i:: Send {up}
+!k:: Send {down}
+;</Mac text>
+
+;<Mac CapsLock>
+Capslock::
+	KeyWait, CapsLock
+	if (A_TimeSinceThisHotkey > 300)
+		SetTimer, switchState, -1
+	else
+    SetCapsLockState Off
+		Send {Shift}
+  return
+
+switchState:
+  SetCapsLockState % !GetKeyState("CapsLock", "T")
+	
+;</Mac CapsLock>
+
+;<New Func>
+;窗口置顶
+#SPACE:: Winset, Alwaysontop, , A
 
 
 ;窗口尺寸切换
-#/::CycleWindowSize()
+>#/::CycleWindowSize()
 
 FindNextSize(width, height) {
   SizeCandidates := [ [800,600], [1280,800], [593,960] ]
@@ -65,17 +130,7 @@ FlashTitleRestore() {
 }
 
 
-;QuickOpen
-#B::run http://www.bilibili.com
-
-#A::run D:\Program\
-
-!N::run, D:\Program Files (x86)\CloudMusic\cloudmusic.exe
-!M::run, D:\Program Files (x86)\Tencent\QQMusic\QQMusic.exe
-!F::run, C:\Program Files\Mozilla Firefox\firefox.exe
-
-
-;常用exe的焦点转移或打开
+;<常用exe的焦点转移或打开>
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -109,22 +164,30 @@ ActivateAndOpen(t,p)
   }
 }
 
+;QuickOpen
+#B::run http://www.bilibili.com
+#A::run D:\Program\
+!D::ActivateAndOpen("钉钉", "C:\Program Files (x86)\DingDing\main\current\DingTalk.exe")
 
-;连击热键动作
-~Alt::
-  if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 600)
+;连击热键快捷键
+~LCtrl Up::
+  if (GetKeyState(LCtrl [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200)
     ActivateAndOpen("Google Chrome","C:\Program Files\Google\Chrome\Application\Chrome.exe")
   return
-~LWin::
-  if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 600)
+~LAlt Up::
+  if (GetKeyState(LAlt [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200)
     ActivateAndOpen("Visual Studio Code", "C:\Program Files\Microsoft VS Code\Code.exe")
   return
-;TODO
-~LCtrl::
-  if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 600)
-    ActivateAndOpen("Visual Studio Code", "C:\Program Files\Microsoft VS Code\Code.exe")
-  return
+; ;TODO
+; ~LCtrl Up
+;   if (GetKeyState(LAlt [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 600)
+;     ActivateAndOpen("Visual Studio Code", "C:\Program Files\Microsoft VS Code\Code.exe")
+;   return
+;</常用exe的焦点转移或打开>
+
+
 
 ;缩写
 ::/lhg::梁洪刚
 ::/long::这是一段测试文本，用于测试缩写是否正常显示
+;</New Func>
