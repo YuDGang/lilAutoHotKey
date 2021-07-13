@@ -48,6 +48,7 @@ LCtrl & Tab::AltTab
 ;</Mac text>
 
 ;<Mac CapsLock>
+;轻击 中英文切换 长按 大小写切换
 Capslock::
 	KeyWait, CapsLock
 	if (A_TimeSinceThisHotkey > 300)
@@ -61,6 +62,7 @@ switchState:
   SetCapsLockState % !GetKeyState("CapsLock", "T")
 	
 ;</Mac CapsLock>
+
 
 ;<New Func>
 ;窗口置顶
@@ -178,13 +180,12 @@ ActivateAndOpen(t,p)
   if (GetKeyState(LAlt [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200)
     ActivateAndOpen("Visual Studio Code", "C:\Program Files\Microsoft VS Code\Code.exe")
   return
-; ;TODO
+; ;TODO 
 ; ~LCtrl Up
 ;   if (GetKeyState(LAlt [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 600)
 ;     ActivateAndOpen("Visual Studio Code", "C:\Program Files\Microsoft VS Code\Code.exe")
 ;   return
 ;</常用exe的焦点转移或打开>
-
 
 
 ;缩写
