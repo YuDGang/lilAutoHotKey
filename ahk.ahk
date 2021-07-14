@@ -180,11 +180,10 @@ ActivateAndOpen(t,p)
   if (GetKeyState(LAlt [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200)
     ActivateAndOpen("Visual Studio Code", "C:\Program Files\Microsoft VS Code\Code.exe")
   return
-; ;TODO 
-; ~LCtrl Up
-;   if (GetKeyState(LAlt [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 600)
-;     ActivateAndOpen("Visual Studio Code", "C:\Program Files\Microsoft VS Code\Code.exe")
-;   return
+~LWin Up::
+  if (GetKeyState(LWin [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 600)
+    ActivateAndOpen("Cmder", "C:\Program Files\cmder\Cmder.exe")
+  return
 ;</常用exe的焦点转移或打开>
 
 
