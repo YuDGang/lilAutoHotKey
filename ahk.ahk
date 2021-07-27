@@ -1,10 +1,14 @@
-; 按键已被重新映射(注册表)：
+﻿; 按键已被重新映射(注册表)：
 ; LCtrl == LWin(#)
 ; LWin == Option(LAlt !)
 ; LAlt == Command(LCtrl ^)
 
 ;<Mac Command-Tab/>
 LCtrl & Tab::AltTab
+
+;<Mac Ctrl+C/>
+;Terminal中的终止命令
+>#C::^C
 
 ;<Mac window>
 ;最小化
@@ -30,8 +34,8 @@ LCtrl & Tab::AltTab
 
 ;<Mac text>
 ;选择文字    
-^,::Send ^+{Left}    
-^.::Send ^+{Right}    return   
+; ^,::Send ^+{Left}    
+; ^.::Send ^+{Right}    return   
 ;选择文字 从当前位置到行首行末 
 ^+Left::Send +{Home}    
 ^+Right::Send +{End}   
@@ -41,10 +45,10 @@ LCtrl & Tab::AltTab
 ^Up::Home
 ^Down::End
 ;Option + jkli 映射方向键
-!j:: Send {left}
-!l:: Send {right}
-!i:: Send {up}
-!k:: Send {down}
+; !j:: Send {left}
+; !l:: Send {right}
+; !i:: Send {up}
+; !k:: Send {down}
 ;</Mac text>
 
 ;<Mac CapsLock>
@@ -168,7 +172,7 @@ ActivateAndOpen(t,p)
 
 ;QuickOpen
 #B::run http://www.bilibili.com
-#A::run D:\Program\
+#E::run D:\Proj\
 !D::ActivateAndOpen("钉钉", "C:\Program Files (x86)\DingDing\main\current\DingTalk.exe")
 
 ;连击热键快捷键
@@ -182,7 +186,7 @@ ActivateAndOpen(t,p)
   return
 ~LWin Up::
   if (GetKeyState(LWin [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 600)
-    ActivateAndOpen("Cmder", "C:\Program Files\cmder\Cmder.exe")
+    ActivateAndOpen("MINGW64:/d/Proj", "C:\Program Files\Git\git-bash.exe --cd=D:\Proj")
   return
 ;</常用exe的焦点转移或打开>
 
