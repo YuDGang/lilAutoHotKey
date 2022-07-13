@@ -144,7 +144,7 @@ SetTitleMatchMode 2
 
 Activate(t)
 {
-  IfWinActive,%t%
+  IfWinActive, %t%
   {
     WinMinimize
     return
@@ -177,16 +177,16 @@ ActivateAndOpen(t,p)
 
 ;连击热键快捷键
 ~LCtrl Up::
-  if (GetKeyState(LCtrl [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 250)
+  if (GetKeyState(LCtrl [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200)
     ActivateAndOpen("Google Chrome","C:\Program Files\Google\Chrome\Application\Chrome.exe")
   return
 ~LAlt Up::
-  if (GetKeyState(LAlt [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 250)
+  if (GetKeyState(LAlt [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200)
     ActivateAndOpen("Visual Studio Code", "C:\Program Files\Microsoft VS Code\Code.exe")
   return
 ~LWin Up::
   if (GetKeyState(LWin [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 600)
-    ActivateAndOpen("MINGW64", "C:\Program Files\Tabby\Tabby.exe --cd=D:\Proj")
+    ActivateAndOpen("Tabby", "C:\Program Files\Tabby\Tabby.exe --cd=D:\Proj")
   return
 ;</常用exe的焦点转移或打开>
 
@@ -194,5 +194,6 @@ ActivateAndOpen(t,p)
 ;缩写
 ::/lhg::梁洪刚
 ::/long::这是一段测试文本，用于测试缩写是否正常显示
-::// rai::// {#} request & init
+::/rai::// {#} request & init
+::/dpcat::npm run build:deploy; cat dist/public/version.txt
 ;</New Func>
