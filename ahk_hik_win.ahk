@@ -196,4 +196,8 @@ ActivateAndOpen(t,p)
 ::/long::这是一段测试文本，用于测试缩写是否正常显示
 ::/rai::// {#} request & init
 ::/dpcat::npm run build:deploy; cat dist/public/version.txt
+::/dpmcat::npm run build:deploymicroapp; cat dist/public/version.txt
+::/yd::yarn dev
+::/ys::yarn serve
+::/ysm::yarn start:microapp
 ;</New Func>
