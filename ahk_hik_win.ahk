@@ -171,14 +171,10 @@ ActivateAndOpen(t,p)
 }
 
 ;QuickOpen
-#B::run http://www.bilibili.com
-#E::run D:\Proj\
-!D::ActivateAndOpen("钉钉", "C:\Program Files (x86)\DingDing\main\current\DingTalk.exe")
-
 ;连击热键快捷键
 ~LCtrl Up::
   if (GetKeyState(LCtrl [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200)
-    ActivateAndOpen("Google Chrome","C:\Program Files\Google\Chrome\Application\Chrome.exe")
+    ActivateAndOpen("Google Chrome","C:\Program Files\Google\Chrome\Application\chrome.exe")
   return
 ~LAlt Up::
   if (GetKeyState(LAlt [P]) != 1 && A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200)
@@ -192,12 +188,14 @@ ActivateAndOpen(t,p)
 
 
 ;缩写
-::/lhg::梁洪刚
-::/long::这是一段测试文本，用于测试缩写是否正常显示
-::/rai::// {#} request & init
+::/rai::// {#}region request & init`n// {#}endregion
+::/r::// {#}region`n// {#}endregion
 ::/dpcat::npm run build:deploy; cat dist/public/version.txt
 ::/dpmcat::npm run build:deploymicroapp; cat dist/public/version.txt
 ::/yd::yarn dev
 ::/ys::yarn serve
 ::/ysm::yarn start:microapp
+::/pd::pnpm run dev
+::/ps::pnpm run serve
+::/psm::pnpm run start:microapp
 ;</New Func>
